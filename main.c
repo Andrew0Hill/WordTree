@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     }
 
     // Create Head node for binary tree.
-    struct node* head = malloc(sizeof(struct node));
+    struct node* head = (struct node*) malloc(sizeof(struct node));
     // We read the first line and use this information to create the head node.
     if(fscanf(input,"%s",input_buffer) != EOF){
         head->word = malloc(sizeof(input_buffer));
@@ -63,9 +63,9 @@ int searchForWord(char* word, struct node* search_node){
     else if(strcmp(word,search_node->word) < 0){
         if (search_node->left_child == NULL){
             // Allocate space for the node structure.
-            search_node->left_child = malloc(sizeof(struct node));
+            search_node->left_child = (struct node*)malloc(sizeof(struct node));
             // Allocate space for the char*
-            search_node->left_child->word = malloc(sizeof(word));
+            search_node->left_child->word = (char*)malloc(sizeof(word));
             // Copy the word into the char*
             strcpy(search_node->left_child->word,word);
             // Set count to 1.
@@ -83,9 +83,9 @@ int searchForWord(char* word, struct node* search_node){
     else {
         if(search_node->right_child == NULL){
             // Allocate space for node structure
-            search_node->right_child = malloc(sizeof(struct node));
+            search_node->right_child = (struct node*)malloc(sizeof(struct node));
             // Allocate space for char*
-            search_node->right_child->word = malloc(sizeof(word));
+            search_node->right_child->word = (char*)malloc(sizeof(word));
             // Copy word into the char*
             strcpy(search_node->right_child->word,word);
             // Set count to 1.
