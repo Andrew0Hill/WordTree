@@ -47,7 +47,6 @@ int main(int argc, char** argv) {
 
     // Memory cleanup.
     delete_tree(head);
-    free(head);
 
     // Close file.
     fclose(input);
@@ -117,24 +116,11 @@ void in_order_traverse(struct node* start){
 }
 
 void delete_tree(struct node* start){
-    if(start != NULL){
-        if(start->left_child == NULL && start->right_child == NULL){
-            return;
-        }else{
-            delete_tree(start->left_child);
-            if(start->left_child != NULL) {
-                printf("Deleting \'%s\'.\n",start->left_child->word);
-                free(start->left_child->word);
-                free(start->left_child);
-            }
-            delete_tree(start->right_child);
-            if(start->right_child != NULL) {
-                printf("Deleting \'%s\'.\n",start->right_child->word);
-                free(start->right_child->word);
-                free(start->right_child);
-            }
-        }
-    }else{
-        return;
+    if (start != NULL){
+        delete_tree(start->left_child);
+        delete_tree(start->right_child);
+        printf("Deleting \'%s\'.\n",start->word);
+        free(start->word);
+        free(start);
     }
 }
